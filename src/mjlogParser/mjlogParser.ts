@@ -5,7 +5,7 @@ const elementsRegex = RegExp('^(\<.*?\/\>)*$');
 const elementRegex = RegExp('\<(.*?)\/\>(.*)$');
 const attrsRegex = RegExp('^[a-zA-Z]+[0-9]*( [a-zA-Z]+[0-9]*\=".*?")* ?$');
 const attrNameRegex = RegExp('^([a-zA-Z]+)([0-9]*) ?(.*?) ?$');
-const attrRegex = RegExp('^([a-zA-Z]+)([0-9]*)\="(.*?)" ?(.*)$');
+const attrRegex = RegExp('^([a-zA-Z]+[0-9]*)\="(.*?)" ?(.*)$');
 
 export function mjlogLexer(path : string) {
   let elements = [];
@@ -38,14 +38,13 @@ export function mjlogLexer(path : string) {
     let index = Number(match[2]);
     let others = match[3];
     let value;
-    elements[i] = [name, index];
+    elements[i] = [name, index, {}];
     while (others != "") {
       match = attrRegex.exec(others);
       name = match[1];
-      index = Number(match[2]);
-      value = match[3].split(',');
-      elements[i].push([name,index,value]);
-      others = match[4];
+      value = match[2].split(',');
+      elements[i][2][name] = value;
+      others = match[3];
     }
   }
 
