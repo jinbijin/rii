@@ -7,7 +7,9 @@ const attrsRegex = RegExp('^[a-zA-Z]+[0-9]*( [a-zA-Z]+[0-9]*\=".*?")* ?$');
 const attrNameRegex = RegExp('^([a-zA-Z]+)([0-9]*) ?(.*?) ?$');
 const attrRegex = RegExp('^([a-zA-Z]+[0-9]*)\="(.*?)" ?(.*)$');
 
-export function mjlogLexer(path : string) {
+// Turns the specified file into an AST, which is an array of items, each of
+// which is an array `[<name>, <index>, <attribute dict>]`.
+export function mjlogParser(path : string) {
   let elements = [];
   let data = readFileSync(path, 'utf-8');
   // Match and extract the content of the outermost element.
