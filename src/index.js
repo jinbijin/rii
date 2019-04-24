@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import { mjlogParser } from './mjlogParser/mjlogParser.ts';
+import { mjlogRecorder } from './mjlogRecorder/mjlogRecorder.ts';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -24,7 +25,8 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools();
 
   let elements = mjlogParser('logs/2019041002gm-000b-9902-28e6257c.mjlog');
-  console.log(elements);
+  let record = mjlogRecorder(elements, {});
+  console.log(record);
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

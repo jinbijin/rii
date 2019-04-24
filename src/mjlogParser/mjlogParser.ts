@@ -23,7 +23,7 @@ export function mjlogParser(path : string) {
   if (!elementsRegex.test(others)) {
     throw new Error('Failure recognising content of "mjloggm" element as a sequence of elements.');
   }
-  while (others != "") {
+  while (others != '') {
     let match = elementRegex.exec(others);
     elements.push(match[1]);
     others = match[2];
@@ -41,7 +41,7 @@ export function mjlogParser(path : string) {
     let others = match[3];
     let value;
     elements[i] = [name, index, {}];
-    while (others != "") {
+    while (others != '') {
       match = attrRegex.exec(others);
       name = match[1];
       value = match[2].split(',');
