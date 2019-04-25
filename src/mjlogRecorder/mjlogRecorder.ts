@@ -24,10 +24,18 @@ export function mjlogRecorder(elements : any[], record) {
     // Find `owari`
     if (element[2]['owari'] != null) {
       for (var j in p) {
-        if (record[p[j]]['MatchScoreBeforeUmaTen'] == null) {
-          record[p[j]]['MatchScoreBeforeUmaTen'] = 0;
+        if (record[p[j]]['MatchScoreBeforeUmaTenfold'] == null) {
+          record[p[j]]['MatchScoreBeforeUmaTenfold'] = 0;
+          record[p[j]]['MatchScoreBeforeUmaTenfoldSquared'] = 0;
+          record[p[j]]['MatchScoreAfterUmaRounded'] = 0;
+          record[p[j]]['MatchScoreAfterUmaRoundedSquared'] = 0;
         }
-        record[p[j]]['MatchScoreBeforeUmaTen'] += (Number(element[2]['owari'][2*j]) - 300);
+        var beforeUmaTenfold = Number(element[2]['owari'][2*j] - 250);
+        var afterUmaRounded = Number(element[2]['owari'][2*j+1]);
+        record[p[j]]['MatchScoreBeforeUmaTenfold'] += beforeUmaTenfold;
+        record[p[j]]['MatchScoreBeforeUmaTenfoldSquared'] += beforeUmaTenfold * beforeUmaTenfold;
+        record[p[j]]['MatchScoreAfterUmaRounded'] += afterUmaRounded;
+        record[p[j]]['MatchScoreAfterUmaRoundedSquared'] += afterUmaRounded * afterUmaRounded;
       }
     }
   }
