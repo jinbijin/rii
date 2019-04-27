@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
-import { mjlogParser } from './mjlogParser/mjlogParser.ts';
-import { mjlogRecorder } from './mjlogRecorder/mjlogRecorder.ts';
+import { mjlogParser } from './mjlogParser.ts';
+import { mjlogRecorder } from './mjlogRecorder.ts';
 import { readdirSync } from 'fs';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.

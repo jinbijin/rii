@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import { Element } from '../types/types'
+import { Element } from './types'
 
 const outerRegex = RegExp('^\<mjloggm ver\="2\.3"\>(.*)\<\/mjloggm\>$');
 const elementsRegex = RegExp('^(\<.*?\/\>)*$');
