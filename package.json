@@ -3,7 +3,7 @@
   "productName": "Rii",
   "version": "0.0.1",
   "description": "Rii: a riichi league score app",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",

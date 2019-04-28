@@ -1,7 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import { mjlogParser } from './mjlogParser.ts';
-import { mjlogRecorder } from './mjlogRecorder.ts';
-import { readdirSync } from 'fs';
+import { recordGenerator } from './recordGenerator.ts';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -15,24 +13,15 @@ let mainWindow;
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
-
-  // Record from log files before loading window.
-  let files = readdirSync('logs');
-  let record = {};
-  for (var file of files) {
-    let elements = mjlogParser('logs/' + file);
-    record = mjlogRecorder(elements, record);
-  }
-  console.log(record);
+  //mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
